@@ -1,0 +1,367 @@
+
+*{
+    -webkit-box-sizing:border-box ;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+body {
+    height: 1750px;
+    font-family: 'Open Sans', sans-serif;
+}
+hr{
+    width: 15%;
+    margin:0 auto 30px;
+    height: 2px;
+    background: #1abc9c;
+}
+/* End Global*/
+/*start Navbar */
+.navbar {
+    padding: 20px 0;
+    font-size: 20px;
+    width: 100%;
+}
+.navbar .navbar-brand{
+    color: #ffffff;
+    margin-top: -25px;
+}
+
+.navbar ul li a{
+    color: #ffffff;
+}
+.navbar ul li a:hover{
+    color: #1abc9c;
+    border-bottom: 2px solid #1abc9c;
+    background: transparent;
+}
+/*end navbar */
+
+/* start header */
+header {
+    background: url('../images/header.jpg');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height:600px ;
+    color: #FFFFCC;
+    position: relative;
+}
+header .overlay{
+    background: rgba(49,55,61,.5);
+    width: 100%;
+    height: 100%;
+}
+header .intro{
+    margin-top: 200px;
+}
+header .intro h1 {
+    color: white;
+    margin-top:0;
+    font-size: 50px;
+    font-weight: bold;
+}
+header .intro p {
+    margin: 5px auto 40px;
+    width: 50%;
+    line-height: 1.9;
+    font-size: 20px;
+    color: #E2E2E2;
+}
+header .buttons a{
+    background: transparent;
+    padding: 10px 10px;
+    font-size: 14px;
+    border: 1px solid #909090;
+    margin: 0 8px;
+    color: #ffffff;
+    border-radius: 10px ;
+    -webkit-transition: all .5s ease-in-out;
+    -moz-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+    text-decoration: none;
+}
+header .buttons a:hover{
+    background-color: #1abc9c;
+    border: 1px solid #1abc9c;
+}
+header .arrow {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    text-align:center;
+    width: 100%;
+    padding: 20px 0;
+    font-size: 32px;
+    cursor: pointer;
+}
+/* End header */
+.newCourses{
+    margin-top: 50px;
+}
+.newCourses h2{
+    font-weight: bold;
+}
+.newCourses .course {
+    background-color: #eeeeee;
+    min-height: 300px;
+    -webkit-border-radius:10px;
+    -moz-border-radius:10px;
+    border-radius:10px;
+    margin-bottom: 50px;
+    cursor: pointer;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    position: relative;
+}
+.newCourses .course:hover{
+    -webkit-box-shadow: 2px 3px 18px -6px rgba(0,0,0,0.75);
+    -moz-box-shadow: 2px 3px 18px -6px rgba(0,0,0,0.75);
+    box-shadow: 2px 3px 18px -6px rgba(0,0,0,0.75);
+}
+.newCourses .course img{
+    display: block;
+    width: 100%;
+    height: 150px;
+    margin-bottom: 30px;
+    -webkit-border-radius:10px 10px 0 0;
+    -moz-border-radius:10px 10px 0 0;
+    border-radius:10px 10px 0 0;
+}
+.newCourses .course span{
+    font-size: 20px;
+    font-weight: bold;
+    display: block;
+    color: #333;
+}
+.newCourses .allCourses{
+    width: 200px;
+    padding: 10px;
+    display: block;
+    margin: auto;
+}
+.newCourses .course a{
+    text-decoration: none;
+}
+
+/*End New Courses Style*/
+/* Start Testimonial section*/
+.testimonials {
+    width: 100%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    background: #eeeeee;
+    padding-bottom: 50px;
+}
+.testimonials h2{
+    text-align: center;
+    padding-top: 50px;
+    color:#333333;
+    font-size: 26px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding-bottom: 20px;
+}
+.testimonials .testi{
+    padding-top: 50px;
+}
+.testimonials .testi img{
+    float:left;
+}
+.testimonials .testi .info{
+    float: left;
+    margin-left: 20px;
+}
+.testimonials .testi .info p{
+    width: 300px;
+    color: #333333;
+    line-height: 1.7;
+    text-align: left;
+}
+.testimonials .testi .info h3{
+    color: #333333;
+    font-size: 20px;
+    text-transform: uppercase;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.testimonials .testi .info span{
+    color: #333333;
+}
+.testimonials .testi img{
+    -webkit-border-radius: 50%;
+    -o-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    margin-left: 50px;
+}
+/* End Testimonial section*/
+/* Start New Events Style*/
+.newEvents{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.newEvents .allEvents{
+    display: block;
+    margin: 20px auto;
+    width: 200px;
+    padding: 10px;
+
+}
+.newEventss img{
+    border-radius:3px;
+}
+.newEvents h2{
+    text-align:center;
+    color:#2f2f2f;
+    font-family: 'Roboto', 'sans-serif';
+    font-weight: bold;
+}
+.newEvents p{
+    line-height: 23px;
+    color:#666666;
+    font-size: 13px;
+    font-family: 'Roboto', 'sans-serif';
+    font-weight: 300;
+}
+.readMore{
+    color:#1fcdff;
+}
+.readMore i{
+    font-size:13px;
+}
+.newEvents .readMore{
+    text-decoration:none;
+}
+.newEvents .readMore:hover{
+    color:#666666;
+}
+.newEvents h3 a{
+    text-align: center;
+    color: #2f2f2f;
+    font-size: 16px;
+    font-family: 'Roboto', 'sans-serif';
+    font-weight: 300;
+    text-decoration:none;
+}
+.newEvents h3 a:hover{
+    color: #1fcdff;
+}
+.newEvents ul{
+    margin-top: 14px;
+    padding-left:0;
+    text-align:center;
+
+}
+.newEvents ul li{
+    padding-right: 20px;
+    display:inline-block;
+    list-style:none;
+}
+.newEvents ul li a{
+    font-family: 'Roboto', 'sans-serif';
+    font-weight: 300;
+    color:#a9a9a9;
+    font-size:13px;
+    text-decoration:none;
+    list-style:none;
+}
+.newEvents ul li{
+    font-family: 'Roboto', 'sans-serif';
+    font-weight: 300;
+    color:#a9a9a9;
+    font-size:13px;
+    text-decoration:none;
+    list-style:none;
+}
+.newEvents ul li a i{
+    padding-right:5px;
+}
+.newEvents li i{
+    padding-right:5px;
+}
+.newEvents ul li a:hover{
+    color:#1fcdff;
+}
+/*End New Events*/
+/* Start Our Team*/
+.our-team{
+    margin-bottom: 50px;
+}
+.our-team .team h2{margin-bottom: 20px;font-size: 35px;font-weight: bold}
+.our-team .team .person{margin-bottom: 20px}
+.team .person img{
+    width: 150px;
+    height: 150px;
+    margin: auto;
+}
+.team .person a {color: #333}
+.person .facebook:hover{color: blue}
+.person .twitter:hover{color: #058fbc}
+.person .linked:hover{color:rgba(39, 75, 255, 0.85)}
+/*end our team style*/
+/* Start contact Style*/
+.contact-us{
+    background: url("../images/apple.jpg");
+    background-size: cover;
+    margin-bottom: 50px;
+}
+.contact-us .contact{
+    background-color:rgba(3,3,3,0.3);
+    min-height: 400px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    color: #ffffff;
+}
+.contact-us .contact h2{margin-bottom: 30px;font-size: 30px;font-weight: bold}
+.contact-us .contact input,
+.contact-us .contact textarea{
+    background-color: rgba(82,78,78,0.8);
+    border:1px solid #666;
+    color: #ffffff;
+}
+.contact-us .contact textarea{height: 108px}
+/* end contact page style*/
+/* End Footer Section*/
+#scroll{
+    background-color:#2e6da4;
+    color: #fff;
+    right: -45px;
+    position: fixed;
+    z-index: 9999;
+    text-align: center;
+    padding: 8px;
+    bottom: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+#scroll:hover{background-color:#01a39b}
+/*end scroll up style*/
+/* Start Footer Style*/
+footer{
+    height: 300px;
+    background: #eeeeee;
+}
+/* end Footer Style*/
+/* start my framework */
+.upper {
+    text-transform: uppercase;
+}
+.main-color{
+    color: #1abc9c;
+}
+.main-background{
+    background-color: #1abc9c;
+}
+.active{
+    color: #1abc9c;
+    border-bottom: 2px solid #1abc9c;
+    background: transparent;
+}
