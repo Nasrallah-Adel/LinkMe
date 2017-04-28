@@ -68,10 +68,11 @@ public class login extends HttpServlet {
                 hs.setAttribute("aut", "true");
                 response.sendRedirect("course.jsp");
             } else {
-                hs.setAttribute("aut", "true");
+                hs.setAttribute("aut", "false");
                 if (loginAttempt > 3) {
                     response.sendRedirect("index.jsp");
                 } else {
+                    hs.setAttribute("aut", "false");
                     int we = loginAttempt + 1;
                     hs.setAttribute("loginCount", we);
                     hs.setAttribute("message", "Invalid email or password. Please try again!");
@@ -79,9 +80,11 @@ public class login extends HttpServlet {
                 }
             }
         } else {
+            hs.setAttribute("aut", "false");
             if (loginAttempt > 3) {
                 response.sendRedirect("index.jsp");
             } else {
+                hs.setAttribute("aut", "false");
                 int we = loginAttempt + 1;
                 hs.setAttribute("loginCount", we);
                 request.setAttribute("message", "Invalid email or password. Please try again!");
