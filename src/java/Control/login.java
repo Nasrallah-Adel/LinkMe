@@ -44,7 +44,7 @@ public class login extends HttpServlet {
         per.setEmail("ss@ss.d");
         per.setPass("aa");
         per = (UserCRUD.getOneUserData_e(email, s) == null) ? per : UserCRUD.getOneUserData_e(email, s);
-        s.getTransaction().commit();
+
         HttpSession hs = request.getSession();
 
         int loginAttempt;
@@ -63,9 +63,12 @@ public class login extends HttpServlet {
             if (per.getPass().equals(pass)) {
                 System.out.println("check pass");
                 user u = new user();
-                u.setUsername(email);
-                u.setPass(pass);
+
+                u = UserCRUD.getOneUserData(email, s);
+                s.getTransaction().commit();
                 hs.setAttribute("aut", "true");
+                hs.setAttribute("user", u);
+
                 response.sendRedirect("course.jsp");
             } else {
                 hs.setAttribute("aut", "false");

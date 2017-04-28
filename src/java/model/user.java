@@ -41,7 +41,16 @@ public class user implements Serializable {
     private String email;
     private String pass;
     private String career;
-    private String pic;
+
+    private String level;
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
+    }
 
 ////    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     @ManyToMany(cascade = CascadeType.ALL, targetEntity = exam.class)
@@ -113,14 +122,6 @@ public class user implements Serializable {
 
     public void setCareer(String career) {
         this.career = career;
-    }
-
-    public String getPic() {
-        return pic;
-    }
-
-    public void setPic(String pic) {
-        this.pic = pic;
     }
 
 }

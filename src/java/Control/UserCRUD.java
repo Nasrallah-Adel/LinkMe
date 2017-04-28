@@ -48,10 +48,10 @@ public class UserCRUD {
 
     }
 
-    public static user getOneUserData(String username, Session s) {
-        Query q = s.createQuery("from user where username=:n");
+    public static user getOneUserData(String email, Session s) {
+        Query q = s.createQuery("from user where email=:n");
         q.setFirstResult(0);
-        q.setParameter("n", username);
+        q.setParameter("n", email);
         List<user> per = q.list();
 
         return per.get(0);
