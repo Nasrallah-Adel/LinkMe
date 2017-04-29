@@ -87,8 +87,11 @@ public final class course_jsp extends org.apache.jasper.runtime.HttpJspBase
             if (request.getSession().getAttribute("aut").equals("false")) {
                 response.sendRedirect("login.jsp");
             }
-            user user=((user) request.getSession().getAttribute("user"));
-            out.print(user.getF_name());
+            user user = ((user) request.getSession().getAttribute("user"));
+            System.out.println(user.getVal());
+            if (user.getVal().equals("no")) {
+                response.sendRedirect("verify.jsp");
+            }
 
         
       out.write("\r\n");
@@ -142,11 +145,12 @@ public final class course_jsp extends org.apache.jasper.runtime.HttpJspBase
                 s.beginTransaction();
                 List<courses> co = coursesCRUD.getcoursesData(s);
                 s.getTransaction().commit();
+                out.print(co.size());
                 int i = 0;
                 for (courses elem : co) {
-if (!user.getCareer().equals(elem.getType())) {
-     continue;
-    }
+                    if (!user.getCareer().toLowerCase().equals(elem.getType().toLowerCase())) {
+                        continue;
+                    }
             
       out.write("\r\n");
       out.write("            <div class=\"e\">\r\n");
@@ -155,7 +159,7 @@ out.print(elem.getSourceImage());
       out.write("\" alt=\"Courses\"/>\r\n");
       out.write("                <h3><a href=\"");
    out.print(elem.getLink()); 
-      out.write("\"> ");
+      out.write(" \" target=\"_blank\"> ");
  out.print(elem.getName()); 
       out.write("</a></h3>\r\n");
       out.write("                <p><b> By :</b> ");
@@ -167,85 +171,88 @@ out.print(elem.getSourceImage());
       out.write("\r\n");
       out.write("\r\n");
       out.write("                    <p><b> Course Rate :</b></p>\r\n");
-      out.write("                    <fieldset class=\"rating\">\r\n");
-      out.write("                        <input type=\"radio\" id=\"star5");
+      out.write("                    <form action=\"rat\" method=\"POST\">\r\n");
+      out.write("\r\n");
+      out.write("                        <fieldset class=\"rating\">\r\n");
+      out.write("                            <input type=\"radio\" id=\"star5");
 out.print(i);
       out.write("\" name=\"rating");
 out.print(i);
       out.write("\" value=\"5\" /><label class = \"full\" for=\"star5");
 out.print(i);
       out.write("\" title=\"Awesome - 5 stars\"></label>\r\n");
-      out.write("                        <input type=\"radio\" id=\"star4half");
+      out.write("                            <input type=\"radio\" id=\"star4half");
 out.print(i);
       out.write("\" name=\"rating");
 out.print(i);
       out.write("\" value=\"4 and a half\" /><label class=\"half\" for=\"star4half");
 out.print(i);
       out.write("\" title=\"Pretty good - 4.5 stars\"></label>\r\n");
-      out.write("                        <input type=\"radio\" id=\"star4");
+      out.write("                            <input type=\"radio\" id=\"star4");
 out.print(i);
       out.write("\" name=\"rating");
 out.print(i);
       out.write("\" value=\"4\" /><label class = \"full\" for=\"star4");
 out.print(i);
       out.write("\" title=\"Pretty good - 4 stars\"></label>\r\n");
-      out.write("                        <input type=\"radio\" id=\"star3half");
+      out.write("                            <input type=\"radio\" id=\"star3half");
 out.print(i);
       out.write("\" name=\"rating");
 out.print(i);
       out.write("\" value=\"3 and a half\" /><label class=\"half\" for=\"star3half");
 out.print(i);
       out.write("\" title=\"Meh - 3.5 stars\"></label>\r\n");
-      out.write("                        <input type=\"radio\" id=\"star3");
+      out.write("                            <input type=\"radio\" id=\"star3");
 out.print(i);
       out.write("\" name=\"rating");
 out.print(i);
       out.write("\" value=\"3\" /><label class = \"full\" for=\"star3");
 out.print(i);
       out.write("\" title=\"Meh - 3 stars\"></label>\r\n");
-      out.write("                        <input type=\"radio\" id=\"star2half");
+      out.write("                            <input type=\"radio\" id=\"star2half");
 out.print(i);
       out.write("\" name=\"rating");
 out.print(i);
       out.write("\" value=\"2 and a half\" /><label class=\"half\" for=\"star2half");
 out.print(i);
       out.write("\" title=\"Kinda bad - 2.5 stars\"></label>\r\n");
-      out.write("                        <input type=\"radio\" id=\"star2");
+      out.write("                            <input type=\"radio\" id=\"star2");
 out.print(i);
       out.write("\" name=\"rating");
 out.print(i);
       out.write("\" value=\"2\" /><label class = \"full\" for=\"star2");
 out.print(i);
       out.write("\" title=\"Kinda bad - 2 stars\"></label>\r\n");
-      out.write("                        <input type=\"radio\" id=\"star1half");
+      out.write("                            <input type=\"radio\" id=\"star1half");
 out.print(i);
       out.write("\" name=\"rating");
 out.print(i);
       out.write("\" value=\"1 and a half\" /><label class=\"half\" for=\"star1half");
 out.print(i);
       out.write("\" title=\"Meh - 1.5 stars\"></label>\r\n");
-      out.write("                        <input type=\"radio\" id=\"star1");
+      out.write("                            <input type=\"radio\"type=\"submit\" id=\"star1");
 out.print(i);
       out.write("\" name=\"rating");
 out.print(i);
       out.write("\" value=\"1\" /><label class = \"full\" for=\"star1");
 out.print(i);
       out.write("\" title=\"Sucks big time - 1 star\"></label>\r\n");
-      out.write("                        <input type=\"radio\" id=\"starhalf");
+      out.write("                            <input type=\"radio\" type=\"submit\"id=\"starhalf");
 out.print(i++);
       out.write("\" name=\"rating");
 out.print(i++);
       out.write("\" value=\"half\" /><label class=\"half\" for=\"starhalf");
 out.print(i++);
       out.write("\" title=\"Sucks big time - 0.5 stars\"></label>\r\n");
-      out.write("                    </fieldset>\r\n");
+      out.write("                        </fieldset>\r\n");
+      out.write("                    </form>\r\n");
       out.write("                </div>\r\n");
       out.write("\r\n");
       out.write("                <p style=\"font-size: 14px\"><a class=\"readMore\" href=\"");
    out.print(elem.getLink()); 
-      out.write("\"> <a href=\"");
+      out.write("\" target=\"_blank\" > <a href=\"");
    out.print(elem.getLink()); 
-      out.write("\">Take Course</a> <i class=\"fa fa-angle-right\"></i></a></p>\r\n");
+      out.write("\" target=\"_blank\">Take Course</a> <i class=\"fa fa-angle-right\"></i></a></p>\r\n");
       out.write("            </div>\r\n");
       out.write("            ");
  }

@@ -28,7 +28,7 @@ public class convert_to_hex {
             }
             buffer.append(Integer.toHexString(intValue) + " ");
         }
-        return buffer.toString();
+        return buffer.toString().replaceAll("\\s+", "");
     }
 
 }

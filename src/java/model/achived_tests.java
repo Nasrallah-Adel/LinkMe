@@ -19,40 +19,37 @@ import javax.persistence.OneToMany;
  *
  * @author mina george
  */
-@Entity
+//@Entity
 public class achived_tests implements Serializable {
 
-    @Id
-    private int id;
+    //@Id
+    private String id;
 
-    private int grade;
+    private String grade;
+    private String user_id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    user user;
-
-    public user getUser() {
-        return user;
-    }
-
-    public void setUser(user user) {
-        this.user = user;
-    }
-
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public int getGrade() {
+    public String getGrade() {
         return grade;
     }
 
-    public void setGrade(int grade) {
+    public void setGrade(String grade) {
         this.grade = grade;
+    }
+
+    public String getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
     }
 
 }

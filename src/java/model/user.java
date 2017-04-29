@@ -45,46 +45,6 @@ public class user implements Serializable {
     private String level;
     private String val;
 
-    public String getVal() {
-        return val;
-    }
-
-    public void setVal(String val) {
-        this.val = val;
-    }
-
-    public Set<exam> getExams() {
-        return exams;
-    }
-
-    public void setExams(Set<exam> exams) {
-        this.exams = exams;
-    }
-
-    public String getLevel() {
-        return level;
-    }
-
-    public void setLevel(String level) {
-        this.level = level;
-    }
-
-////    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    @ManyToMany(cascade = CascadeType.ALL, targetEntity = exam.class)
-    private Set<exam> exams = new HashSet<exam>(0);
-
-    @JoinTable(name = "user_exam", joinColumns = {
-        @JoinColumn(name = "user_id")}, inverseJoinColumns = {
-        @JoinColumn(name = "exam_id")}
-    )
-    public Set<exam> getExam() {
-        return exams;
-    }
-
-    public void setExam(Set<exam> exams) {
-        this.exams = exams;
-    }
-
     public int getUser_id() {
         return user_id;
     }
@@ -141,4 +101,21 @@ public class user implements Serializable {
         this.career = career;
     }
 
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
+    }
+
+    public String getVal() {
+        return val;
+    }
+
+    public void setVal(String val) {
+        this.val = val;
+    }
+
+    
 }

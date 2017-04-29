@@ -39,24 +39,37 @@
             </nav>
             <!-- End Nav Section-->
         </header>
+        <%
+
+            if (request.getSession().getAttribute("aut") == null) {
+                request.getSession().setAttribute("aut", "false");
+            }
+
+            if (request.getSession().getAttribute("aut").equals("false")) {
+                response.sendRedirect("login.jsp");
+            }
+            
+
+        %>
         <!-- Start form section-->
         <section class="form" id="logIn">
 
             <div class="container">
                 <div class="form-container">
                     <h3 class="text-center">Verify Your Account</h3>
-                    <form method="post" action="Validate_email">
-                       
+                    <form method="post" action="valid">
+                        <% model.user u = new model.user();
+                           request.setAttribute("user", u);%>
                         <div class="form-group">
                             <label for="password"><i class="fa fa-key" aria-hidden="true"></i>Verification Code</label>
                             <input type="text" name="vc" class="form-control" id="vc" placeholder="Enter Your Verification Code">
                         </div>
 
                         <button type="submit" class="btn btn-info">Verify</button>
-                       
+
                     </form>
-                  
-                    
+
+
                 </div>
             </div>
         </section>

@@ -68,12 +68,7 @@ public class SignUp extends HttpServlet {
             hs.setAttribute("message", "user is exist");
             response.sendRedirect("signUp.jsp");
         } else {
-            convert_to_hex cth = new convert_to_hex();
-            try {
-                send_mail(cth.stringToHex(u.getF_name()), email);
-            } catch (MessagingException ex) {
-                Logger.getLogger(SignUp.class.getName()).log(Level.SEVERE, null, ex);
-            }
+
             hs.setAttribute("user", u);
             doPost(request, response);
 
@@ -112,9 +107,17 @@ public class SignUp extends HttpServlet {
         user u = (user) request.getSession().getAttribute("user");
         int x = UserCRUD.InsertUser(u, s);
         s.getTransaction().commit();
-        System.out.println("saved user   sd sd sd  sd ");
+        convert_to_hex cth = new convert_to_hex();
+
+        try {
+            send_mail(cth.stringToHex(u.getF_name()), u.getEmail());
+        } catch (MessagingException ex) {
+            Logger.getLogger(SignUp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        System.out.println("saved user");
         if (x > 0) {
-            response.sendRedirect("login.jsp");
+            response.sendRedirect("verify.jsp");
         }
     }
 

@@ -108,7 +108,7 @@
         </section>
         <!-- End form section-->
         <script src="js/jquery-3.2.0.min.js"></script>
-        <script src="js/handleSignup.js"></script>
+        <!--   <script src="js/handleSignup.js"></script>-->
         <script src="js/bootstrap.min.js"></script>
         <script src="js/jquery.nicescroll.min.js"></script>
         <script src="js/custom.js"></script>

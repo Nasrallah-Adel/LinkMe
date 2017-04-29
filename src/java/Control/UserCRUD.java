@@ -28,11 +28,11 @@ import org.hibernate.cfg.Configuration;
 public class UserCRUD {
 
     public static int InsertUser(user user, Session s) {
-       
+
         int x = 0;
         try {
             x = (int) s.save(user);
-           
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -111,21 +111,15 @@ public class UserCRUD {
         return false;
     }
 
-    public static user updateuser(String user, Session s) {
-
-        int id = 0;
-        s.beginTransaction();
-        Query q = s.createQuery("from user where username=:n");
-        q.setFirstResult(0);
-        q.setParameter("n", user);
-        List<user> per = q.list();
-        for (user p : per) {
-            id = p.getUser_id();
-        }
-        user forUpdate = (user) s.load(user.class, id);
-
-        return forUpdate;
-    }
+//    public static void updateuser_val(user u, Session s) {
+//
+//        int id = 0;
+//      
+//        Query q = s.createQuery("UPDATE table_name SET val = yes WHERE email=:n");
+//        q.setFirstResult(0);
+//        q.setParameter("n", email);
+//        q.executeUpdate();
+//    }
 
     public static void DeleteUser(String user, Session s) {
         s.beginTransaction();

@@ -26,6 +26,14 @@ public class Event {
     private String date;
     private String linke;
 
+    public int getEvent_id() {
+        return event_id;
+    }
+
+    public void setEvent_id(int event_id) {
+        this.event_id = event_id;
+    }
+
     public String getName() {
         return name;
     }
