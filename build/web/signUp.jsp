@@ -93,6 +93,11 @@
                         <h4></h4>
                     </div>
                     <%
+                        if (request.getSession().getAttribute("aut") == null) {
+                            request.getSession().setAttribute("aut", "false");
+                        }else if( !request.getSession().getAttribute("aut").equals("false")){
+                            response.sendRedirect("course.jsp");
+                        }
                         if (request.getSession().getAttribute("message") == null) {
                             request.getSession().setAttribute("message", "");
                         } else {

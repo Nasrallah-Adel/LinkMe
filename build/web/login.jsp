@@ -58,8 +58,14 @@
                         <button type="submit" class="btn btn-info">Login</button>
                         <a href="signUp.jsp">You Do Not Have Account?</a>
                     </form>
-                  
-                    <%                        if (request.getSession().getAttribute("message") == null) {
+
+                    <%   if (request.getSession().getAttribute("aut") == null) {
+                            request.getSession().setAttribute("aut", "false");
+                        } else if (!request.getSession().getAttribute("aut").equals("false")) {
+                            response.sendRedirect("course.jsp");
+                        }
+
+                        if (request.getSession().getAttribute("message") == null) {
                             request.getSession().setAttribute("message", "");
                         } else {
                             String s = (String) request.getSession().getAttribute("message");

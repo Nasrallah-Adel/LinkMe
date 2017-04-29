@@ -11,16 +11,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.user;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author nasrallah
  */
-public class valid extends HttpServlet {
+public class logout extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,28 +33,11 @@ public class valid extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String vc = request.getParameter("vc");
-            System.out.println(vc);
-            convert_to_hex cth = new convert_to_hex();
-            user u = new user();
-            u = (user) request.getSession().getAttribute("user");
-            System.out.println(u.getEmail() + "  ?" + vc + ":" + cth.stringToHex(u.getF_name()) + vc.equals(cth.stringToHex(u.getF_name())));
-            if (vc.equals(cth.stringToHex(u.getF_name()))) {
-                SessionFactory sf = new Configuration().configure().buildSessionFactory();
-
-                Session s = sf.openSession();
-                s.beginTransaction();
-                System.out.println("yse");
-                UserCRUD.updateuser_val(u, s);//set user val to yes
-
-                s.getTransaction().commit();
-
-                response.sendRedirect("course.jsp");
-            } else {
-                System.out.println("no");
-                response.sendRedirect("verify.jsp");
+            HttpSession session = request.getSession(false);
+            if (session != null) {
+                session.invalidate();
             }
-
+            request.getRequestDispatcher("/index.jsp").forward(request, response);
         }
     }
 

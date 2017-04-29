@@ -111,15 +111,15 @@ public class UserCRUD {
         return false;
     }
 
-//    public static void updateuser_val(user u, Session s) {
-//
-//        int id = 0;
-//      
-//        Query q = s.createQuery("UPDATE table_name SET val = yes WHERE email=:n");
-//        q.setFirstResult(0);
-//        q.setParameter("n", email);
-//        q.executeUpdate();
-//    }
+    public static void updateuser_val(user u, Session s) {
+
+        int id = 0;
+      
+        Query q = s.createSQLQuery("UPDATE user SET val = \"yes\" WHERE email=:n");
+        q.setFirstResult(0);
+        q.setParameter("n", u.getEmail());
+        q.executeUpdate();
+    }
 
     public static void DeleteUser(String user, Session s) {
         s.beginTransaction();

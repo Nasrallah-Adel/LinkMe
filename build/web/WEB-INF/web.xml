@@ -4,9 +4,17 @@
         <servlet-name>valid</servlet-name>
         <servlet-class>Control.valid</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>logout</servlet-name>
+        <servlet-class>Control.logout</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>valid</servlet-name>
         <url-pattern>/valid</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>logout</servlet-name>
+        <url-pattern>/logout</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
