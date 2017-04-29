@@ -43,6 +43,23 @@ public class user implements Serializable {
     private String career;
 
     private String level;
+    private String val;
+
+    public String getVal() {
+        return val;
+    }
+
+    public void setVal(String val) {
+        this.val = val;
+    }
+
+    public Set<exam> getExams() {
+        return exams;
+    }
+
+    public void setExams(Set<exam> exams) {
+        this.exams = exams;
+    }
 
     public String getLevel() {
         return level;
