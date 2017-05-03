@@ -71,6 +71,7 @@
                             String s = (String) request.getSession().getAttribute("message");
                             if (!s.equals("")) {
                                 out.print("Message : " + s);
+                                request.getSession().setAttribute("message", "");
                             }
 
                         }

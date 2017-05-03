@@ -93,6 +93,7 @@
                         <h4></h4>
                     </div>
                     <%
+                        System.out.println("i am in signup.jsp");
                         if (request.getSession().getAttribute("aut") == null) {
                             request.getSession().setAttribute("aut", "false");
                         }else if( !request.getSession().getAttribute("aut").equals("false")){
@@ -104,6 +105,7 @@
                             String s = (String) request.getSession().getAttribute("message");
                             if (!s.equals("")) {
                                 out.print("Message : " + s);
+                                 request.getSession().setAttribute("message", "");
                             }
 
                         }

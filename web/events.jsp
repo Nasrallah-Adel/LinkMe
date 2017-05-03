@@ -54,11 +54,11 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="index.html">HOME</a></li>
-                            <li><a href="course.html">COURSES</a></li>
+                           
+                            <li><a href="course.jsp">COURSES</a></li>
                             <li><a href="#">ABOUT</a></li>
-                            <li><a href="events.html">EVENT</a></li>
-                            <li><a href="#">CONTACT</a></li>
+                            <li><a href="events.jsp">EVENT</a></li>
+                            <li><a href="conact_us">CONTACT</a></li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->

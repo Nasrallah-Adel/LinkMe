@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import listener.DB;
 import model.user;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -37,6 +38,7 @@ public class SignUp extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        System.out.println("i am in signup.java get");
         String fname, lname, username, email, pass, pass1, Tracks, message = "";
         fname = request.getParameter("firstName");
         lname = request.getParameter("lastName");
@@ -45,10 +47,7 @@ public class SignUp extends HttpServlet {
         pass = request.getParameter("password");
         pass1 = request.getParameter("passwordConfirm");
         Tracks = request.getParameter("Tracks");
-        SessionFactory sf = new Configuration().configure().buildSessionFactory();
 
-        Session s = sf.openSession();
-        s.beginTransaction();
         model.user u = new user();
         u.setF_name(fname);
         u.setL_name(lname);
@@ -58,9 +57,9 @@ public class SignUp extends HttpServlet {
         u.setPass(pass);
         u.setLevel("0");
         u.setVal("no");
-        Boolean is_exist = UserCRUD.is_exist(u, s);
+        Boolean is_exist = UserCRUD.is_exist(u);
 
-        s.getTransaction().commit();
+       
         HttpSession hs = request.getSession();
         System.out.println(is_exist);
         if (is_exist) {
@@ -82,7 +81,7 @@ public class SignUp extends HttpServlet {
             SMTP smtp = new SMTP();
             smtp.setTo(email);
             Properties prop = new Properties();
-            javax.mail.Session ses = javax.mail.Session.getDefaultInstance(prop, smtp);
+            javax.mail.Session ses = javax.mail.Session.getInstance(prop, smtp);
             MimeMessage mim = new MimeMessage(ses);
             mim.setContent(code, "text/html");
             mim.setSubject("validate");
@@ -99,14 +98,11 @@ public class SignUp extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        System.out.println("i am in signup.java post");
 
-        SessionFactory sf = new Configuration().configure().buildSessionFactory();
-
-        Session s = sf.openSession();
-        s.beginTransaction();
         user u = (user) request.getSession().getAttribute("user");
-        int x = UserCRUD.InsertUser(u, s);
-        s.getTransaction().commit();
+        int x = UserCRUD.InsertUser(u);
+       
         convert_to_hex cth = new convert_to_hex();
 
         try {
@@ -115,10 +111,11 @@ public class SignUp extends HttpServlet {
             Logger.getLogger(SignUp.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        System.out.println("saved user");
-        if (x > 0) {
-            response.sendRedirect("verify.jsp");
-        }
+        
+        request.getSession().setAttribute("aut", "true");
+         request.getSession().setAttribute("user", u);
+        response.sendRedirect("verif.jsp");
+
     }
 
 }

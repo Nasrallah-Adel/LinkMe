@@ -1,5 +1,9 @@
+<%@page import="listener.DB"%>
 <!DOCTYPE html>
 <html>
+    <%
+       
+    %>
     <head>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,800"/>
         <!-- IE compatibilty meta-->

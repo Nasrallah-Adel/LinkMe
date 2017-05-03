@@ -6,6 +6,7 @@
 package Control;
 
 import java.util.List;
+import listener.DB;
 import model.admin;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -16,20 +17,20 @@ import org.hibernate.Session;
  */
 public class AdminCRUD {
 
-    public static int InsertAdmin(admin admin, Session s) {
-        s.beginTransaction();
+    public static int InsertAdmin(admin admin) {
+       
         int x = 0;
         try {
-            x = (int) s.save(admin);
-            s.getTransaction().commit();
+            x = (int) DB.s.save(admin);
+            DB.s.getTransaction().commit();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         return x;
     }
 
-    public static List getAdminsData(Session s) {
-        Query q = s.createQuery("from admin");
+    public static List getAdminsData() {
+        Query q = DB.s.createQuery("from admin");
         q.setFirstResult(0);
 
         List<admin> per = q.list();
@@ -37,8 +38,8 @@ public class AdminCRUD {
 
     }
 
-    public static List getOneAdminData(String username, Session s) {
-        Query q = s.createQuery("from admin where username=:n");
+    public static List getOneAdminData(String username) {
+        Query q = DB.s.createQuery("from admin where username=:n");
         q.setFirstResult(0);
         q.setParameter("n", username);
         List<admin> per = q.list();
@@ -47,8 +48,8 @@ public class AdminCRUD {
 
     }
 
-    public static Boolean CheckUsername(String username, Session s) {
-        Query q = s.createQuery("from admin where username=:n");
+    public static Boolean CheckUsername(String username) {
+        Query q = DB.s.createQuery("from admin where username=:n");
         q.setParameter("n", username);
         q.setFirstResult(0);
 
@@ -61,10 +62,10 @@ public class AdminCRUD {
 
     }
 
-    public static String CheckUserPassword(String username, Session s) {
+    public static String CheckUserPassword(String username) {
         String password = "ccc";
 
-        Query q = s.createQuery("select pass from admin where username=:n");
+        Query q = DB.s.createQuery("select pass from admin where username=:n");
         q.setFirstResult(0);
         q.setParameter("n", username);
         List<admin> per = q.list();
@@ -77,8 +78,8 @@ public class AdminCRUD {
 
     }
 
-    public static Boolean CheckEmail(String email, Session s) {
-        Query q = s.createQuery("from admin where email=:n");
+    public static Boolean CheckEmail(String email) {
+        Query q = DB.s.createQuery("from admin where email=:n");
         q.setParameter("n", email);
         q.setFirstResult(0);
 
@@ -90,36 +91,36 @@ public class AdminCRUD {
         return false;
     }
 
-    public static admin updateAdmin(String user, Session s) {
+    public static admin updateAdmin(String user) {
 
         int id = 0;
-        s.beginTransaction();
-        Query q = s.createQuery("from admin where username=:n");
+       
+        Query q = DB.s.createQuery("from admin where username=:n");
         q.setFirstResult(0);
         q.setParameter("n", user);
         List<admin> per = q.list();
         for (admin p : per) {
             id = p.getAdmin_id();
         }
-        admin forUpdate = (admin) s.load(admin.class, id);
+        admin forUpdate = (admin) DB.s.load(admin.class, id);
 
         return forUpdate;
     }
 
-    public static void DeleteAdmin(String user, Session s) {
-        s.beginTransaction();
+    public static void DeleteAdmin(String user) {
+        
         int id = 0;
 
-        Query q = s.createQuery("from admin where username=:n");
+        Query q = DB.s.createQuery("from admin where username=:n");
         q.setFirstResult(0);
         q.setParameter("n", user);
         List<admin> per = q.list();
         for (admin p : per) {
             id = p.getAdmin_id();
         }
-        admin forDelete = (admin) s.load(admin.class, id);
-        s.delete(forDelete);
-        s.getTransaction().commit();
+        admin forDelete = (admin) DB.s.load(admin.class, id);
+        DB.s.delete(forDelete);
+        DB.s.getTransaction().commit();
 
     }
 

@@ -17,25 +17,15 @@ import org.hibernate.cfg.Configuration;
  *
  * @author mina george
  */
-public class DB implements ServletContextListener {
- Session s;
- Transaction tx;
- SessionFactory sf;
-    @Override
-    public void contextInitialized(ServletContextEvent sce) {
- sf= new Configuration().configure()
-             .buildSessionFactory();   //init
-             s = sf.openSession();
-       
-          tx = s.beginTransaction();
-          
-          sce.getServletContext().setAttribute("Session", s);  
-                    System.out.println("DB connected ");
+public class DB {
 
+    public DB() {
+        sf = new Configuration().configure().buildSessionFactory();
+        s = sf.openSession();
     }
 
-    @Override
-    public void contextDestroyed(ServletContextEvent sce) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public static SessionFactory sf = new Configuration().configure().buildSessionFactory();
+    public static Session s = sf.openSession();
+;
+
 }

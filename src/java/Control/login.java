@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import listener.DB;
 import model.user;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -33,17 +34,14 @@ public class login extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        System.out.println("i am in login.java");
 
-        SessionFactory sf = new Configuration().configure().buildSessionFactory();
-
-        Session s = sf.openSession();
-        s.beginTransaction();
         String email = request.getParameter("email");
         String pass = request.getParameter("password");
         user per = new user();
         per.setEmail("ss@ss.d");
         per.setPass("aa");
-        per = (UserCRUD.getOneUserData_e(email, s) == null) ? per : UserCRUD.getOneUserData_e(email, s);
+        per = (UserCRUD.getOneUserData_e(email) == null) ? per : UserCRUD.getOneUserData_e(email);
 
         HttpSession hs = request.getSession();
 
@@ -58,14 +56,14 @@ public class login extends HttpServlet {
         }
         System.out.println("loginAttempt" + loginAttempt);
 
-        if (per.getEmail().equals(email)) {
+        if (per.getEmail().toLowerCase().equals(email.toLowerCase())) {
             System.out.println("check email");
             if (per.getPass().equals(pass)) {
                 System.out.println("check pass");
                 user u = new user();
-
-                u = UserCRUD.getOneUserData(email, s);
-                s.getTransaction().commit();
+DB d =new DB();
+                u = UserCRUD.getOneUserData(email);
+               
                 hs.setAttribute("aut", "true");
                 hs.setAttribute("user", u);
 

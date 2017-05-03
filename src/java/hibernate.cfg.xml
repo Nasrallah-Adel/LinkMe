@@ -40,27 +40,29 @@ made subject to such option by the copyright holder.
 Contributor(s):
 -->
 <hibernate-configuration>
-  <session-factory>
-    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/LinkMe</property>
-    <property name="hibernate.connection.username">root</property>
-    <property name="hibernate.connection.password">root</property>
-    <property name="hibernate.show_sql">true</property>
-    <property name="hibernate.hbm2ddl.auto">update</property>
-    <property name="hibernate.show_sql">true</property>
-    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="connection.pool_size">1</property>
-    <property name="hibernate.c3p0.acquire_increment">1</property>
-    <property name="hibernate.c3p0.idle_test_period">100</property>
-    <property name="hibernate.c3p0.max_size">10</property>
-    <property name="hibernate.c3p0.max_statements">10</property>
-    <property name="hibernate.c3p0.timeout">100</property>
-    <property name="hibernate.c3p0.min_size">10</property>
-    <mapping class="model.user"/>
-    <mapping class="model.achived_tests"/>
-    <mapping class="model.courses"/>
-    <mapping class="model.admin"/>
-    <mapping class="model.exam"/>
-    <mapping class="model.Event"/>
-  </session-factory>
+    <session-factory>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/LinkMe</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">root</property>
+      
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.pool_size">10</property>
+        
+        <property name="hibernate.c3p0.acquire_increment">1</property>
+        <property name="hibernate.c3p0.idle_test_period">10000</property>
+        <property name="hibernate.c3p0.max_size">1000</property>
+        <property name="hibernate.c3p0.max_statements">1000</property>
+        <property name="hibernate.c3p0.timeout">10000</property>
+        <property name="hibernate.c3p0.min_size">10</property>
+    
+        <mapping class="model.user"/>
+        <mapping class="model.achived_tests"/>
+        <mapping class="model.courses"/>
+        <mapping class="model.admin"/>
+        <mapping class="model.exam"/>
+        <mapping class="model.Event"/>
+    </session-factory>
 </hibernate-configuration>

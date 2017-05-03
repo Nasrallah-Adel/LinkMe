@@ -6,6 +6,7 @@
 package Control;
 
 import java.util.List;
+import listener.DB;
 import model.courses;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -16,67 +17,77 @@ import org.hibernate.Session;
  */
 public class coursesCRUD {
 
-    public static int InsertCourse(courses course, Session s) {
-        s.beginTransaction();
+    public static int InsertCourse(courses course) {
+
         int x = 0;
         try {
-            x = (int) s.save(course);
-            s.getTransaction().commit();
+            x = (int) DB.s.save(course);
+            DB.s.getTransaction().commit();
+            DB.s.clear();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         return x;
     }
 
-    public static List<courses> getcoursesData(Session s) {
-        Query q = s.createQuery("from courses");
+    public static List<courses> getcoursesData() {
+        DB.s.beginTransaction();
+        Query q = DB.s.createQuery("from courses");
         q.setFirstResult(0);
 
         List<courses> per = q.list();
+        DB.s.getTransaction().commit();
+        DB.s.clear();
         return per;
 
     }
 
-    public static List<courses> getOneCourseData(String username, Session s) {
-        Query q = s.createQuery("from courses where username=:n");
+    public static List<courses> getOneCourseData(String username) {
+        DB.s.beginTransaction();
+
+        Query q = DB.s.createQuery("from courses where username=:n");
         q.setFirstResult(0);
         q.setParameter("n", username);
         List<courses> per = q.list();
-//            for (user p : per) {}                          
+        DB.s.getTransaction().commit();
+        DB.s.clear();
         return per;
 
     }
 
-    public static courses updateCourse(String link, Session s) {
+    public static courses updateCourse(String link) {
 
         int id = 0;
-        s.beginTransaction();
-        Query q = s.createQuery("from courses where link=:n");
+        DB.s.beginTransaction();
+
+        Query q = DB.s.createQuery("from courses where link=:n");
         q.setFirstResult(0);
         q.setParameter("n", link);
         List<courses> per = q.list();
         for (courses p : per) {
             id = p.getCourse_id();
         }
-        courses forUpdate = (courses) s.load(courses.class, id);
-
+        courses forUpdate = (courses) DB.s.load(courses.class, id);
+        DB.s.getTransaction().commit();
+        DB.s.clear();
         return forUpdate;
     }
 
-    public static void Deletecourse(String link, Session s) {
-        s.beginTransaction();
+    public static void Deletecourse(String link) {
+
         int id = 0;
 
-        Query q = s.createQuery("from courses where link=:n");
+        Query q = DB.s.createQuery("from courses where link=:n");
         q.setFirstResult(0);
         q.setParameter("n", link);
         List<courses> per = q.list();
         for (courses p : per) {
             id = p.getCourse_id();
         }
-        courses forDelete = (courses) s.load(courses.class, id);
-        s.delete(forDelete);
-        s.getTransaction().commit();
+        courses forDelete = (courses) DB.s.load(courses.class, id);
+        DB.s.delete(forDelete);
+        DB.s.getTransaction().commit();
+        DB.s.clear();
 
     }
 }
