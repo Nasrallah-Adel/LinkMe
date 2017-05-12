@@ -33,16 +33,15 @@ public class logout extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-              
-
-            HttpSession session = request.getSession(false);
+        
+            HttpSession session = request.getSession();
             if (session != null) {
                 session.invalidate();
             }
             DB.sf.close();
             DB n = new DB();
             request.getRequestDispatcher("/index.jsp").forward(request, response);
+   
         }
     }
 

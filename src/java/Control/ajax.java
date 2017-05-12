@@ -38,30 +38,10 @@ public class ajax extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-//            SessionFactory sf = new Configuration().configure().buildSessionFactory();
-//            Session s = sf.openSession();
-//            s.beginTransaction();
-//            model.user u = new user();
-//            String email, pass, pass1;
-//            email = request.getParameter("email");
-//            pass = request.getParameter("password");
-//            pass1 = request.getParameter("passwordConfirm");
-//            u.setEmail(email);
-//            Boolean is_exist = UserCRUD.is_exist(u, s);
-//            String json;
-//            if (is_exist) {
-//                json = "{\"mailexist\":\"true\"";
-//            } else {
-//                json = "{\"mailexist\":\"false\"";
-//            }
-//            if (pass.equals(pass1)) {
-//                json += ",\"mailexist\":\"true\"}";
-//            } else {
-//                json += ",\"mailexist\":\"false\"}";
-//
-//            }
-//            out.print(json);
+           
+          
+		response.setContentType("text/plain");
+		response.getWriter().write("dddajax");
         }
     }
 

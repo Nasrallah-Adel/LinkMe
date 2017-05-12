@@ -41,6 +41,9 @@ public final class signUp_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
       out.write("<!DOCTYPE html>\r\n");
       out.write("<html>\r\n");
       out.write("    <head>\r\n");
@@ -54,6 +57,24 @@ public final class signUp_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <link rel=\"stylesheet\" href=\"css/font-awesome.min.css\"/>\r\n");
       out.write("        <link rel=\"stylesheet\" href=\"css/bootstrap.min.css\"/>\r\n");
       out.write("        <link rel=\"stylesheet\" href=\"css/registration.css\"/>\r\n");
+      out.write("        <script src=\"js/jquery-3.2.0.min.js\"></script>\r\n");
+      out.write("\r\n");
+      out.write("        <script>\r\n");
+      out.write("\r\n");
+      out.write("            $(document).ready(function () {\r\n");
+      out.write("                $('.submit-signup').onclick(function () {\r\n");
+      out.write("                    $.ajax({\r\n");
+      out.write("                        url: 'GetUserServlet',\r\n");
+      out.write("                        data: {\r\n");
+      out.write("                            userName: $('#userName').val()\r\n");
+      out.write("                        },\r\n");
+      out.write("                        success: function (responseText) {\r\n");
+      out.write("                            $('#ajax').text(responseText);\r\n");
+      out.write("                        }\r\n");
+      out.write("                    });\r\n");
+      out.write("                });\r\n");
+      out.write("            });\r\n");
+      out.write("        </script>\r\n");
       out.write("    </head>\r\n");
       out.write("    <body>\r\n");
       out.write("        <header>\r\n");
@@ -134,13 +155,14 @@ public final class signUp_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                    </form>\r\n");
       out.write("                    <div class=\"alert alert-danger hidden\">\r\n");
       out.write("                        <h4></h4>\r\n");
+      out.write("                        <div id=\"ajax\"></div>\r\n");
       out.write("                    </div>\r\n");
       out.write("                    ");
 
                         System.out.println("i am in signup.jsp");
                         if (request.getSession().getAttribute("aut") == null) {
                             request.getSession().setAttribute("aut", "false");
-                        }else if( !request.getSession().getAttribute("aut").equals("false")){
+                        } else if (!request.getSession().getAttribute("aut").equals("false")) {
                             response.sendRedirect("course.jsp");
                         }
                         if (request.getSession().getAttribute("message") == null) {
@@ -149,7 +171,7 @@ public final class signUp_jsp extends org.apache.jasper.runtime.HttpJspBase
                             String s = (String) request.getSession().getAttribute("message");
                             if (!s.equals("")) {
                                 out.print("Message : " + s);
-                                 request.getSession().setAttribute("message", "");
+                                request.getSession().setAttribute("message", "");
                             }
 
                         }
@@ -159,7 +181,7 @@ public final class signUp_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            </div>\r\n");
       out.write("        </section>\r\n");
       out.write("        <!-- End form section-->\r\n");
-      out.write("        <script src=\"js/jquery-3.2.0.min.js\"></script>\r\n");
+      out.write("\r\n");
       out.write("        <!--   <script src=\"js/handleSignup.js\"></script>-->\r\n");
       out.write("        <script src=\"js/bootstrap.min.js\"></script>\r\n");
       out.write("        <script src=\"js/jquery.nicescroll.min.js\"></script>\r\n");

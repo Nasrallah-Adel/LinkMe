@@ -52,8 +52,7 @@ public class verify extends HttpServlet {
             response.sendRedirect("verif.jsp");
         }
     }
-
-    /**
+ /**
      * Handles the HTTP <code>POST</code> method.
      *
      * @param request servlet request

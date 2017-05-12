@@ -47,7 +47,7 @@ public class SignUp extends HttpServlet {
         pass = request.getParameter("password");
         pass1 = request.getParameter("passwordConfirm");
         Tracks = request.getParameter("Tracks");
-
+        
         model.user u = new user();
         u.setF_name(fname);
         u.setL_name(lname);

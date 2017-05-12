@@ -3,11 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/media/nasrallah/main1/FCI/Java%20Web%20Projects/LinkMe/src/java/hibernate.cfg.xml</file>
-            <file>file:/media/nasrallah/main1/FCI/Java%20Web%20Projects/LinkMe/src/java/Control/SignUp.java</file>
-            <file>file:/media/nasrallah/main1/FCI/Java%20Web%20Projects/LinkMe/src/java/listener/DB.java</file>
-            <file>file:/media/nasrallah/main1/FCI/Java%20Web%20Projects/LinkMe/web/verif.jsp</file>
-            <file>file:/media/nasrallah/main1/FCI/Java%20Web%20Projects/LinkMe/src/java/model/test.java</file>
+            <file>file:/media/nasrallah/main1/FCI/Java%20Web%20Projects/LinkMe/web/events.jsp</file>
+            <file>file:/media/nasrallah/main1/FCI/Java%20Web%20Projects/LinkMe/web/course.jsp</file>
+            <file>file:/media/nasrallah/main1/FCI/Java%20Web%20Projects/LinkMe/web/conact_us.jsp</file>
+            <file>file:/media/nasrallah/main1/FCI/Java%20Web%20Projects/LinkMe/web/Profile.jsp</file>
         </group>
     </open-files>
 </project-private>

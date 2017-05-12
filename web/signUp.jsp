@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,6 +14,9 @@
         <link rel="stylesheet" href="css/font-awesome.min.css"/>
         <link rel="stylesheet" href="css/bootstrap.min.css"/>
         <link rel="stylesheet" href="css/registration.css"/>
+        <script src="js/jquery-3.2.0.min.js"></script>
+
+        
     </head>
     <body>
         <header>
@@ -96,7 +102,7 @@
                         System.out.println("i am in signup.jsp");
                         if (request.getSession().getAttribute("aut") == null) {
                             request.getSession().setAttribute("aut", "false");
-                        }else if( !request.getSession().getAttribute("aut").equals("false")){
+                        } else if (!request.getSession().getAttribute("aut").equals("false")) {
                             response.sendRedirect("course.jsp");
                         }
                         if (request.getSession().getAttribute("message") == null) {
@@ -105,7 +111,7 @@
                             String s = (String) request.getSession().getAttribute("message");
                             if (!s.equals("")) {
                                 out.print("Message : " + s);
-                                 request.getSession().setAttribute("message", "");
+                                request.getSession().setAttribute("message", "");
                             }
 
                         }
@@ -114,7 +120,7 @@
             </div>
         </section>
         <!-- End form section-->
-        <script src="js/jquery-3.2.0.min.js"></script>
+
         <!--   <script src="js/handleSignup.js"></script>-->
         <script src="js/bootstrap.min.js"></script>
         <script src="js/jquery.nicescroll.min.js"></script>

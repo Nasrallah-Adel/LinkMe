@@ -1,3 +1,5 @@
+<%@page import="Control.UserCRUD"%>
+<%@page import="model.user"%>
 <!--A Design by W3layouts
 Author: W3layout
 Author URL: http://w3layouts.com
@@ -39,12 +41,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
             if (request.getSession().getAttribute("aut") == null) {
                 request.getSession().setAttribute("aut", "false");
-            }
-
-            if (request.getSession().getAttribute("aut").equals("false")) {
+                response.sendRedirect("login.jsp");
+            } else if (request.getSession().getAttribute("aut").equals("false")) {
                 response.sendRedirect("login.jsp");
             }
-
+            user u = new user();
+            u = (user) request.getSession().getAttribute("user");
+            request.getSession().setAttribute("user", u);
+            u = UserCRUD.getOneUserData(u.getEmail());
+            System.out.println(u.getCareer());
         %>
         <script>
             $(document).ready(function () {
@@ -52,9 +57,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
                     autoPlay: 3000, //Set AutoPlay to 3 seconds
                     autoPlay: true,
-                    items: 3,
-                    itemsDesktop: [640, 5],
-                    itemsDesktopSmall: [414, 4]
+                    items: 1,
+                    itemsDesktop: [1000, 5],
 
                 });
 
@@ -92,7 +96,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 <li><a href="events.jsp">EVENT</a></li>
                                 <li><a href="contact_us.jsp">CONTACT ME</a></li>
                                 <li><a href="about.jsp">ABOUT</a></li>
-                                <li><a href="logout">LogOut</a></li>
                                 <ul class="nav navbar-nav navbar-right">
                                     <li class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -110,8 +113,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                                             </p>
                                                         </div>
                                                         <div class="col-lg-8">
-                                                            <p class="text-left"><strong>Salman Khan</strong></p>
-                                                            <p class="text-left small">crazytodevelop@@gmail.com</p>
+                                                            <p class="text-left"><strong><% out.print(u.getUsername());  %></strong></p>
+                                                            <p class="text-left small"><% out.print(u.getEmail());  %></p>
                                                             <p class="text-left">
                                                                 <a href="#" class="btn btn-primary btn-block btn-sm">Profile</a>
                                                             </p>
@@ -119,20 +122,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                                     </div>
                                                 </div>
                                             </li>
-                                            <li class="divider navbar-login-session-bg"></li>
-                                            <li><a href="#">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                                            <li class="divider navbar-login-session-bg" ></li>
+                                            <li><a href="#">Edit <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
                                             <li class="divider"></li>
-                                            <li><a href="#">User stats <span class="glyphicon glyphicon-stats pull-right"></span></a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Messages <span class="badge pull-right"> 42 </span></a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Favourites Snippets <span class="glyphicon glyphicon-heart pull-right"></span></a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+                                            <li><a href="logout">logout<span class="glyphicon glyphicon-log-out" style="padding-left: 250px"></span></a></li>
+
                                         </ul>
                                     </li>
                                 </ul>
-                            </ul>
+                            </ul>   
 
 
 
@@ -156,8 +154,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
                             <li><a href="course.jsp">courses</a></li>
                             <li><a href="events.jsp">Event</a></li>
-                            <li><a href="#">about</a></li>
-                            <li><a href="#">Contact</a></li>
+                            <li><a href="about.jsp">about</a></li>
+                            <li><a href="contact_us.jsp">Contact</a></li>
                             <li><a href="logout">LogOut</a></li>
                         </ul>
                     </div>
@@ -179,13 +177,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                                             <section class='wrap'>
                                                                 <div class='wrap_right'>
                                                                     <div class='bar_group'>
-                                                                        <div class='bar_group__bar thin' label='Css' show_values='true' tooltip='true' value='235'><button class="takeexam" type="button">Exam</button></div>
-                                                                        <div class='bar_group__bar thin' label='Photoshop' show_values='true' tooltip='true' value='675'><button class="takeexam1" type="button"> Exam</button></div>
-                                                                        <div class='bar_group__bar thin' label='illustratior' show_values='true' tooltip='true' value='456'><button class="takeexam2" type="button"> Exam</button></div>
-                                                                        <div class='bar_group__bar thin' label='Php' show_values='true' tooltip='true' value='245'><button class="takeexam3" type="button"> Exam</button></div>
+                                                                        <div class='bar_group__bar thin' label="<% out.print(u.getCareer());%>" show_values='true' tooltip='true' value="<% out.print(Integer.valueOf(u.getLevel()) * 10);%>"><form action="Exam.jsp" method="get"><button class="takeexam" type="submit">Exam</button></form><br></div>
                                                                     </div>
-                                                                </div>
-                                                                <div class='clear'></div>
+
+                                                                    <div class='clear'></div>
                                                             </section>
 
                                                         </section>
@@ -206,15 +201,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <h1 style="color: white">Personal Details</h1>
                             <div class="w3ls-banner-left-info">
                                 <h4>Job Title</h4>
-                                <p>Web Designer </p>
+                                <p><% out.print(u.getCareer());%> </p>
                             </div>
                             <div class="w3ls-banner-left-info">
                                 <h4>Name</h4>
-                                <p>Hoda Ahmed</p>
+                                <p><% out.print(u.getF_name() + " " + u.getL_name());%></p>
                             </div>
                             <div class="w3ls-banner-left-info">
                                 <h4>Email Address</h4>
-                                <p>Hodaammar1995@gmail.com</p>
+                                <p><% out.print(u.getEmail());%></p>
                             </div>
                         </div>
                         <div class="clearfix"> </div>

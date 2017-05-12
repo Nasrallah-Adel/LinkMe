@@ -1,0 +1,116 @@
+
+
+/* start Global */
+*{
+    -webkit-box-sizing:border-box ;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+body {
+
+    font-family: 'Open Sans', sans-serif;
+
+    background: url("../images/header2.jpg");
+    background-size: cover;
+
+}
+hr{
+    width: 15%;
+    margin:0 auto 30px;
+    height: 2px;
+    background: #1abc9c;
+}
+/* End Global*/
+
+/*
+/*start header design*/
+header{
+    background: #4c5455;
+
+    filter:alpha(opacity=50);
+    -moz-opacity:0.5;
+    -khtml-opacity: 0.5;
+    opacity: 0.5;
+
+    width: 100%;
+
+
+}
+/*start Navbar */
+/*start Navbar */
+.navbar {
+    padding: 20px 0;
+    font-size: 20px;
+    width: 100%;
+}
+.navbar .navbar-brand{
+    color: #ffffff;
+    margin-top: -25px;
+}
+
+.navbar ul li a{
+    color: #ffffff;
+}
+.navbar ul li a:hover{
+    color: #1abc9c;
+    border-bottom: 2px solid #1abc9c;
+    background: transparent;
+}
+/*end navbar */
+/* Start contact Style*/
+.contact-us{
+
+    margin-bottom: 30px;
+}
+.contact-us .contact{
+    background-color:rgba(3,3,3,0.3);
+    min-height: 400px;
+    padding-top: 50px;
+    padding-bottom: 130px;
+    color: #ffffff;
+}
+.contact-us .contact h2{margin-bottom: 30px;font-size: 30px;font-weight: bold}
+.contact-us .contact input,
+.contact-us .contact textarea{
+    background-color: rgba(82,78,78,0.8);
+    border:1px solid #666;
+    color: #ffffff;
+}
+.contact-us .contact textarea{height: 108px}
+/* end contact page style*/
+/* End Footer Section*/
+#scroll{
+    background-color:#2e6da4;
+    color: #fff;
+    right: -45px;
+    position: fixed;
+    z-index: 9999;
+    text-align: center;
+    padding: 8px;
+    bottom: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+#scroll:hover{background-color:#01a39b}
+/*end scroll up style*/
+/* Start Footer Style*/
+footer{
+
+    background: #eeeeee;
+}
+/* end Footer Style*/
+/* start my framework */
+.upper {
+    text-transform: uppercase;
+}
+.main-color{
+    color: #1abc9c;
+}
+.main-background{
+    background-color: #1abc9c;
+}
+.active{
+    color: #1abc9c;
+    border-bottom: 2px solid #1abc9c;
+    background: transparent;
+}

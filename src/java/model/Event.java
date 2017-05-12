@@ -25,6 +25,8 @@ public class Event {
     private String speaker;
     private String date;
     private String linke;
+  
+
 
     public int getEvent_id() {
         return event_id;
