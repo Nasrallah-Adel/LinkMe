@@ -81,6 +81,7 @@ public final class Exam_jsp extends org.apache.jasper.runtime.HttpJspBase
         request.getSession().setAttribute("user", u);
         u = UserCRUD.getOneUserData(u.getEmail());
         System.out.println(u.getCareer());
+        request.getSession().setAttribute("user", u);
     
       out.write("\r\n");
       out.write("    <body>\r\n");
@@ -155,48 +156,71 @@ public final class Exam_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        </header>\r\n");
       out.write("        <!-- New section -->\r\n");
       out.write("        <section class=\"Event\">\r\n");
-      out.write("            <h2 style=\"padding-left:500px\" ><b>Level ");
- out.print(u.getLevel());
+      out.write("            <form action=\"exam\" method=\"POST\">\r\n");
+      out.write("                <h2 style=\"padding-left:500px\" ><b>Level ");
+ out.print((Integer.valueOf(u.getLevel()) + 1));
       out.write(" Quiz</b>  </h2> <br>\r\n");
-      out.write("            ");
+      out.write("                ");
 
 
-                List<exam> co = examcrud.getexamData(u.getLevel(),u.getCareer());
+                    List<exam> co = examcrud.getexamData(u.getLevel(), u.getCareer());
 
-                int i = 0;
+                    int i = 0;
+                    int j = 0;
+                    for (exam elem : co) {
 
-                for (exam elem : co) {
 
-
-            
+                
       out.write("\r\n");
-      out.write("            <fieldset class=\"group\">\r\n");
-      out.write("                <legend>");
- out.print((i++) + " - " + elem.getQuestion()); 
+      out.write("                <fieldset class=\"group-");
+ out.print((j)); 
+      out.write("\">\r\n");
+      out.write("                    <legend>");
+ out.print((++i) + " - " + elem.getQuestion()); 
       out.write("</legend>\r\n");
-      out.write("                <ul class=\"checkbox\">\r\n");
-      out.write("                    <li><input type=\"radio\" id=\"cb1\" value=\"a\" /><label for=\"cb1\">");
+      out.write("                    <ul class=\"checkbox\">\r\n");
+      out.write("                        <li><input name = \"group-");
+ out.print((j)); 
+      out.write("\"type=\"radio\" id=\"cb1\" value=\"a-");
+ out.print((elem.getExam_id())); 
+      out.write("\" /><label for=\"cb1\">");
  out.print(elem.getA()); 
       out.write("</label></li>\r\n");
-      out.write("                    <li><input type=\"radio\" id=\"cb2\" value=\"b\" /><label for=\"cb2\">");
+      out.write("                        <li><input name = \"group-");
+ out.print((j)); 
+      out.write("\" type=\"radio\" id=\"cb2\" value=\"b-");
+ out.print((elem.getExam_id())); 
+      out.write("\" /><label for=\"cb2\">");
  out.print(elem.getB()); 
       out.write("</label></li>\r\n");
-      out.write("                    <li><input type=\"radio\" id=\"cb3\" value=\"c\" /><label for=\"cb3\">");
+      out.write("                        <li><input name = \"group-");
+ out.print((j)); 
+      out.write("\" type=\"radio\" id=\"cb3\" value=\"c-");
+ out.print((elem.getExam_id())); 
+      out.write("\" /><label for=\"cb3\">");
  out.print(elem.getC()); 
       out.write("</label></li>\r\n");
-      out.write("                    <li><input type=\"radio\" id=\"cb4\" value=\"d\" /><label for=\"cb4\">");
+      out.write("                        <li><input name = \"group-");
+ out.print((j++)); 
+      out.write("\" type=\"radio\" id=\"cb4\" value=\"d-");
+ out.print((elem.getExam_id())); 
+      out.write("\" /><label for=\"cb4\">");
  out.print(elem.getD()); 
       out.write("</label></li>\r\n");
-      out.write("                </ul>\r\n");
-      out.write("            </fieldset>\r\n");
-      out.write("            ");
-                }
-            
+      out.write("                    </ul>\r\n");
+      out.write("                </fieldset>\r\n");
+      out.write("                ");
+
+                    }
+                
       out.write("\r\n");
-      out.write("            <div class=\"buttons\">\r\n");
-      out.write("                <a href=\"#\" class=\"upper\" style=\"color: #0f1215\"> Submit </a>\r\n");
       out.write("\r\n");
-      out.write("            </div>\r\n");
+      out.write("                <div class=\"buttons\">\r\n");
+      out.write("                    <input type=\"submit\" value=\"Submit\"  class=\"upper\" style=\"color: #0f1215\" />\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("                </div>\r\n");
+      out.write("            </form>\r\n");
       out.write("            <br>\r\n");
       out.write("        </section>\r\n");
       out.write("\r\n");

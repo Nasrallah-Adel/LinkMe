@@ -39,6 +39,7 @@ public class UserCRUD {
     }
 
     public static user getOneUserData(String email) {
+
         DB.s.beginTransaction();
 
         Query q = DB.s.createQuery("from user where email=:n");
@@ -104,8 +105,8 @@ public class UserCRUD {
         Query q = DB.s.createQuery("from user where email=:n");
         q.setParameter("n", email);
         q.setFirstResult(0);
- DB.s.getTransaction().commit();
-       
+        DB.s.getTransaction().commit();
+
         List<user> per = q.list();
         if (!per.isEmpty()) {
             DB.s.clear();
@@ -123,7 +124,18 @@ public class UserCRUD {
         q.setFirstResult(0);
         q.setParameter("n", u.getEmail());
         q.executeUpdate();
-       DB.s.getTransaction().commit();
+        DB.s.getTransaction().commit();
+        DB.s.clear();
+    }
+
+    public static void updateuser_lev(user u, String sum) {
+        DB.s.beginTransaction();
+       // System.out.println("sssssssssssssxxxxxxxxx sum");
+        Query q = DB.s.createSQLQuery("UPDATE user SET level = " + sum + " WHERE email=:n");
+        q.setFirstResult(0);
+        q.setParameter("n", u.getEmail());
+        q.executeUpdate();
+        DB.s.getTransaction().commit();
         DB.s.clear();
     }
 
@@ -141,7 +153,7 @@ public class UserCRUD {
         }
         user forDelete = (user) DB.s.load(user.class, id);
         DB.s.delete(forDelete);
-         DB.s.getTransaction().commit();
+        DB.s.getTransaction().commit();
         DB.s.clear();
 
     }

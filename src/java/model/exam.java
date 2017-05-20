@@ -17,7 +17,7 @@ import javax.persistence.*;
 public class exam implements Serializable {
 
     @Id
-    private int exam_id;
+    private String exam_id;
     private String question;
     private String A;
     private String B;
@@ -42,18 +42,19 @@ public class exam implements Serializable {
 //    public void setTest(Set<user> users) {
 //        this.users = users;
 //    }
-    
-    
-    
 
-    public int getExam_id() {
+    public String getExam_id() {
         return exam_id;
     }
 
-    public void setExam_id(int exam_id) {
+    public void setExam_id(String exam_id) {
         this.exam_id = exam_id;
     }
+   
+    
+    
 
+   
     public String getQuestion() {
         return question;
     }

@@ -32,6 +32,7 @@
         request.getSession().setAttribute("user", u);
         u = UserCRUD.getOneUserData(u.getEmail());
         System.out.println(u.getCareer());
+        request.getSession().setAttribute("user", u);
     %>
     <body>
         <header>
@@ -99,32 +100,37 @@
         </header>
         <!-- New section -->
         <section class="Event">
-            <h2 style="padding-left:500px" ><b>Level <% out.print((Integer.valueOf(u.getLevel()) + 1));%> Quiz</b>  </h2> <br>
-            <%
+            <form action="exam" method="POST">
+                <h2 style="padding-left:500px" ><b>Level <% out.print((Integer.valueOf(u.getLevel()) + 1));%> Quiz</b>  </h2> <br>
+                <%
 
-                List<exam> co = examcrud.getexamData(u.getLevel(), u.getCareer());
+                    List<exam> co = examcrud.getexamData(u.getLevel(), u.getCareer());
 
-                int i = 0;
-                int j = 0;
-                for (exam elem : co) {
+                    int i = 0;
+                    int j = 0;
+                    for (exam elem : co) {
 
 
-            %>
-            <fieldset class="group<% out.print((j)); %>">
-                <legend><% out.print((++i) + " - " + elem.getQuestion()); %></legend>
-                <ul class="checkbox">
-                    <li><input name = "group<% out.print((j)); %>"type="radio" id="cb1" value="a" /><label for="cb1"><% out.print(elem.getA()); %></label></li>
-                    <li><input name = "group<% out.print((j)); %>" type="radio" id="cb2" value="b" /><label for="cb2"><% out.print(elem.getB()); %></label></li>
-                    <li><input name = "group<% out.print((j)); %>" type="radio" id="cb3" value="c" /><label for="cb3"><% out.print(elem.getC()); %></label></li>
-                    <li><input name = "group<% out.print((j++)); %>" type="radio" id="cb4" value="d" /><label for="cb4"><% out.print(elem.getD()); %></label></li>
-                </ul>
-            </fieldset>
-            <%                }
-            %>
-            <div class="buttons">
-                <a href="#" class="upper" style="color: #0f1215"> Submit </a>
+                %>
+                <fieldset class="group-<% out.print((j)); %>">
+                    <legend><% out.print((++i) + " - " + elem.getQuestion()); %></legend>
+                    <ul class="checkbox">
+                        <li><input name = "group-<% out.print((j)); %>"type="radio" id="cb1" value="a-<% out.print((elem.getExam_id())); %>" /><label for="cb1"><% out.print(elem.getA()); %></label></li>
+                        <li><input name = "group-<% out.print((j)); %>" type="radio" id="cb2" value="b-<% out.print((elem.getExam_id())); %>" /><label for="cb2"><% out.print(elem.getB()); %></label></li>
+                        <li><input name = "group-<% out.print((j)); %>" type="radio" id="cb3" value="c-<% out.print((elem.getExam_id())); %>" /><label for="cb3"><% out.print(elem.getC()); %></label></li>
+                        <li><input name = "group-<% out.print((j++)); %>" type="radio" id="cb4" value="d-<% out.print((elem.getExam_id())); %>" /><label for="cb4"><% out.print(elem.getD()); %></label></li>
+                    </ul>
+                </fieldset>
+                <%
+                    }
+                %>
 
-            </div>
+                <div class="buttons">
+                    <input type="submit" value="Submit"  class="upper" style="color: #0f1215" />
+
+
+                </div>
+            </form>
             <br>
         </section>
 

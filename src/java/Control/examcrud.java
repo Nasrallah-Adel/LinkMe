@@ -28,5 +28,17 @@ public class examcrud {
         return per;
 
     }
+    public static List<exam> getOneCourseData(String id) {
+        DB.s.beginTransaction();
+
+        Query q = DB.s.createQuery("from exam where exam_id=:n");
+        q.setFirstResult(0);
+        q.setParameter("n", id);
+        List<exam> per = q.list();
+        DB.s.getTransaction().commit();
+        DB.s.clear();
+        return per;
+
+    }
 
 }

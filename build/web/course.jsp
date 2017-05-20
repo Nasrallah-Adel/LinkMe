@@ -95,7 +95,7 @@
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                         <span class="glyphicon glyphicon-user"></span>
-                                        <strong><% out.print(u.getF_name());  %></strong>
+                                        <strong><% out.print(u.getUsername());  %></strong>
                                         <span class="glyphicon glyphicon-chevron-down"></span>
                                     </a>
                                     <ul class="dropdown-menu">
@@ -148,7 +148,7 @@
                     <div id="se">
 
 
-
+                        
 
 
                     </div>
@@ -163,9 +163,9 @@
                 int i = 0;
                 Collections.sort(co, new courses());
                 for (courses elem : co) {
-                    if (!elem.getLevel().equals(u.getLevel())) {
-                        System.out.println("c leve : " + elem.getLevel());
-                        System.out.println("u leve  :" + u.getLevel());
+                     if (!Integer.valueOf(elem.getLevel()).equals((Integer.valueOf(u.getLevel()) + 1))) {
+                        System.out.println("c leve : " + (Integer.valueOf(elem.getLevel()) + 1));
+                        System.out.println("u leve  :" + (Integer.valueOf(u.getLevel()) + 1));
                         continue;
                     }
             %>
@@ -180,16 +180,16 @@
 
                     <p><b> Course Rate :</b></p>
                     <fieldset class="rating">
-                        <input type="radio" id="star5<%out.print(i);%>" name="rating" value="5" /><label class = "full" for="star5<%out.print(i);%>" title="Awesome - 5 stars"></label>
-                        <input type="radio" id="star4half<%out.print(i);%>" name="rating" value="4 and a half" /><label class="half" for="star4half<%out.print(i);%>" title="Pretty good - 4.5 stars"></label>
-                        <input type="radio" id="star4<%out.print(i);%>" name="rating" value="4" /><label class = "full" for="star4<%out.print(i);%>" title="Pretty good - 4 stars"></label>
-                        <input type="radio" id="star3half<%out.print(i);%>" name="rating" value="3 and a half" /><label class="half" for="star3half<%out.print(i);%>" title="Meh - 3.5 stars"></label>
-                        <input type="radio" id="star3<%out.print(i);%>" name="rating" value="3" /><label class = "full" for="star3<%out.print(i);%>" title="Meh - 3 stars"></label>
-                        <input type="radio" id="star2half<%out.print(i);%>" name="rating" value="2 and a half" /><label class="half" for="star2half<%out.print(i);%>" title="Kinda bad - 2.5 stars"></label>
-                        <input type="radio" id="star2<%out.print(i);%>" name="rating" value="2" /><label class = "full" for="star2<%out.print(i);%>" title="Kinda bad - 2 stars"></label>
-                        <input type="radio" id="star1half<%out.print(i);%>" name="rating" value="1 and a half" /><label class="half" for="star1half<%out.print(i);%>" title="Meh - 1.5 stars"></label>
-                        <input type="radio" id="star1<%out.print(i);%>" name="rating" value="1" /><label class = "full" for="star1<%out.print(i);%>" title="Sucks big time - 1 star"></label>
-                        <input type="radio" id="starhalf<%out.print(i++);%>" name="rating" value="half" /><label class="half" for="starhalf<%out.print(i++);%>" title="Sucks big time - 0.5 stars"></label>
+                        <input type="radio" id="star5<%out.print(i);%>" name="rating<%out.print(i);%>" value="5" /><label class = "full" for="star5<%out.print(i);%>" title="Awesome - 5 stars"></label>
+                        <input type="radio" id="star4half<%out.print(i);%>" name="rating<%out.print(i);%>" value="4 and a half" /><label class="half" for="star4half<%out.print(i);%>" title="Pretty good - 4.5 stars"></label>
+                        <input type="radio" id="star4<%out.print(i);%>" name="rating<%out.print(i);%>" value="4" /><label class = "full" for="star4<%out.print(i);%>" title="Pretty good - 4 stars"></label>
+                        <input type="radio" id="star3half<%out.print(i);%>" name="rating<%out.print(i);%>" value="3 and a half" /><label class="half" for="star3half<%out.print(i);%>" title="Meh - 3.5 stars"></label>
+                        <input type="radio" id="star3<%out.print(i);%>" name="rating<%out.print(i);%>" value="3" /><label class = "full" for="star3<%out.print(i);%>" title="Meh - 3 stars"></label>
+                        <input type="radio" id="star2half<%out.print(i);%>" name="rating<%out.print(i);%>" value="2 and a half" /><label class="half" for="star2half<%out.print(i);%>" title="Kinda bad - 2.5 stars"></label>
+                        <input type="radio" id="star2<%out.print(i);%>" name="rating<%out.print(i);%>" value="2" /><label class = "full" for="star2<%out.print(i);%>" title="Kinda bad - 2 stars"></label>
+                        <input type="radio" id="star1half<%out.print(i);%>" name="rating<%out.print(i);%>" value="1 and a half" /><label class="half" for="star1half<%out.print(i);%>" title="Meh - 1.5 stars"></label>
+                        <input type="radio" id="star1<%out.print(i);%>" name="rating<%out.print(i);%>" value="1" /><label class = "full" for="star1<%out.print(i);%>" title="Sucks big time - 1 star"></label>
+                        <input type="radio" id="starhalf<%out.print(i++);%>" name="rating<%out.print(i++);%>" value="half" /><label class="half" for="starhalf<%out.print(i++);%>" title="Sucks big time - 0.5 stars"></label>
                     </fieldset>
                 </div>
 
@@ -228,7 +228,8 @@
 
                                 console.log(result);
                                 $('#se').html(result);
-                            } else {
+                            }
+                            else{
                                 $('#se').html("<li><a href="#" ></a></li>");
                             }
                         },
