@@ -55,7 +55,7 @@ public class SignUp extends HttpServlet {
         u.setEmail(email);
         u.setCareer(Tracks);
         u.setPass(pass);
-        u.setLevel("0");
+        u.setLevel("1");
         u.setVal("no");
         Boolean is_exist = UserCRUD.is_exist(u);
 

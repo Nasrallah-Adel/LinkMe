@@ -1,3 +1,4 @@
+<%@page import="java.util.Collections"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Control.UserCRUD"%>
 <%@page import="model.user"%>
@@ -35,7 +36,7 @@
         <script src="js/jquery-3.2.0.min.js"></script>
         <script src="js/jquery.nicescroll.min.js"></script>
         <script src="js/custom.js"></script>
-         <script src="js/bootstrap.js"></script>
+        <script src="js/bootstrap.js"></script>
         <title>LinkMe</title>
         <link rel="stylesheet" href="css/Exam.css"/>
     </head>
@@ -141,7 +142,17 @@
                 <label class="search" for="search"><i class="fa fa-search" aria-hidden="true"></i>
                     </i>Search</label>
 
+
                 <input type="search" name="search" class="form-control" id="search" placeholder="Search Courses">
+                <ul id="myUL" >
+                    <div id="se">
+
+
+                        
+
+
+                    </div>
+                </ul>
             </div>
 
             <!-- first course -->
@@ -150,6 +161,7 @@
                 List<courses> co = coursesCRUD.getcoursesData();
 
                 int i = 0;
+                Collections.sort(co, new courses());
                 for (courses elem : co) {
                     if (!elem.getLevel().equals(u.getLevel())) {
                         System.out.println("c leve : " + elem.getLevel());
@@ -197,7 +209,35 @@
         </div>
         <!-- end scroll up-->
         <script src="js/bars.js"></script>
-         <script type="text/javascript" src="js/main.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
         <script src="js/owl.carousel.js"></script>
     </body>
+    <script type="text/javascript">
+            $(document).ready(function () {
+                var search_input = $('#search');
+                search_input.on('change', function () {
+                    alert(search_input.val());
+                    var search_key = search_input.val();
+                    $.ajax({
+                        url: 'search_for_course',
+                        data: {"key": search_key},
+                        method: 'POST',
+                        success: function (result) {
+                            if (search_key != "") {
+
+
+                                console.log(result);
+                                $('#se').html(result);
+                            }
+                            else{
+                                $('#se').html("<li><a href="#" ></a></li>");
+                            }
+                        },
+                        error: function () {
+                            alert('internal server error');
+                        },
+                    });
+                });
+            });
+    </script>
 </html>

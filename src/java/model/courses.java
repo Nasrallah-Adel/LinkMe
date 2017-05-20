@@ -5,6 +5,7 @@
  */
 package model;
 
+import java.util.Comparator;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -18,7 +19,7 @@ import javax.persistence.OneToMany;
  * @author mina george
  */
 @Entity
-public class courses {
+public class courses implements Comparator<courses>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -93,6 +94,19 @@ public class courses {
 
     public void setRate(String rate) {
         this.rate = rate;
+    }
+
+    @Override
+    public int compare(courses o1, courses o2) {
+        if (Double.parseDouble(o1.rate)<Double.parseDouble(o2.rate)){
+            return 1;
+        }
+        else if (Double.parseDouble(o1.rate)>Double.parseDouble(o2.rate)){
+            return -1;
+        }
+        else{
+            return 0;
+        }
     }
 
 }

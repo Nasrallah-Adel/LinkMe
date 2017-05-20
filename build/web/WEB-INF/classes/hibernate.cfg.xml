@@ -64,5 +64,6 @@ Contributor(s):
         <mapping class="model.admin"/>
         <mapping class="model.exam"/>
         <mapping class="model.Event"/>
+         <mapping class="model.contact_us"/>
     </session-factory>
 </hibernate-configuration>

@@ -3,6 +3,7 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import java.util.Collections;
 import java.util.ArrayList;
 import Control.UserCRUD;
 import model.user;
@@ -64,6 +65,7 @@ public final class course_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("\n");
+      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
@@ -85,10 +87,27 @@ public final class course_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <!-- Mobile meta-->\n");
       out.write("        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n");
       out.write("        <meta charset=\"UTF-8\">\n");
+      out.write("        <script src=\"js/jquery-3.2.0.min.js\"></script>\n");
+      out.write("        <script src=\"js/jquery.nicescroll.min.js\"></script>\n");
+      out.write("        <script src=\"js/custom.js\"></script>\n");
+      out.write("        <script src=\"js/bootstrap.js\"></script>\n");
       out.write("        <title>LinkMe</title>\n");
       out.write("        <link rel=\"stylesheet\" href=\"css/Exam.css\"/>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
+      out.write("        <script>\n");
+      out.write("            $(document).ready(function () {\n");
+      out.write("                $(\"#owl-demo\").owlCarousel({\n");
+      out.write("\n");
+      out.write("                    autoPlay: 3000, //Set AutoPlay to 3 seconds\n");
+      out.write("                    autoPlay: true,\n");
+      out.write("                    items: 1,\n");
+      out.write("                    itemsDesktop: [1000, 5],\n");
+      out.write("\n");
+      out.write("                });\n");
+      out.write("\n");
+      out.write("            });\n");
+      out.write("        </script>\n");
       out.write("        ");
 
             if (request.getSession().getAttribute("aut") == null) {
@@ -132,7 +151,9 @@ public final class course_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                <li class=\"dropdown\">\n");
       out.write("                                    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n");
       out.write("                                        <span class=\"glyphicon glyphicon-user\"></span>\n");
-      out.write("                                        <strong>Salman</strong>\n");
+      out.write("                                        <strong>");
+ out.print(u.getF_name());  
+      out.write("</strong>\n");
       out.write("                                        <span class=\"glyphicon glyphicon-chevron-down\"></span>\n");
       out.write("                                    </a>\n");
       out.write("                                    <ul class=\"dropdown-menu\">\n");
@@ -183,7 +204,17 @@ public final class course_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                <label class=\"search\" for=\"search\"><i class=\"fa fa-search\" aria-hidden=\"true\"></i>\n");
       out.write("                    </i>Search</label>\n");
       out.write("\n");
+      out.write("\n");
       out.write("                <input type=\"search\" name=\"search\" class=\"form-control\" id=\"search\" placeholder=\"Search Courses\">\n");
+      out.write("                <ul id=\"myUL\" class=\"form-control\">\n");
+      out.write("                    <div id=\"se\">\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("                        \n");
+      out.write("\n");
+      out.write("\n");
+      out.write("                    </div>\n");
+      out.write("                </ul>\n");
       out.write("            </div>\n");
       out.write("\n");
       out.write("            <!-- first course -->\n");
@@ -193,6 +224,7 @@ public final class course_jsp extends org.apache.jasper.runtime.HttpJspBase
                 List<courses> co = coursesCRUD.getcoursesData();
 
                 int i = 0;
+                Collections.sort(co, new courses());
                 for (courses elem : co) {
                     if (!elem.getLevel().equals(u.getLevel())) {
                         System.out.println("c leve : " + elem.getLevel());
@@ -314,10 +346,38 @@ out.print(i++);
       out.write("            <i class=\"fa fa-chevron-up fa-2x\"></i>\n");
       out.write("        </div>\n");
       out.write("        <!-- end scroll up-->\n");
-      out.write("        <script src=\"js/jquery-3.2.0.min.js\"></script>\n");
-      out.write("        <script src=\"js/jquery.nicescroll.min.js\"></script>\n");
-      out.write("        <script src=\"js/custom.js\"></script>\n");
+      out.write("        <script src=\"js/bars.js\"></script>\n");
+      out.write("        <script type=\"text/javascript\" src=\"js/main.js\"></script>\n");
+      out.write("        <script src=\"js/owl.carousel.js\"></script>\n");
       out.write("    </body>\n");
+      out.write("    <script type=\"text/javascript\">\n");
+      out.write("            $(document).ready(function () {\n");
+      out.write("                var search_input = $('#search');\n");
+      out.write("                search_input.on('change', function () {\n");
+      out.write("                    alert(search_input.val());\n");
+      out.write("                    var search_key = search_input.val();\n");
+      out.write("                    $.ajax({\n");
+      out.write("                        url: 'search_for_course',\n");
+      out.write("                        data: {\"key\": search_key},\n");
+      out.write("                        method: 'POST',\n");
+      out.write("                        success: function (result) {\n");
+      out.write("                            if (search_key != \"\") {\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("                                console.log(result);\n");
+      out.write("                                $('#se').html(result);\n");
+      out.write("                            }\n");
+      out.write("                            else{\n");
+      out.write("                                $('#se').html(\"<li><a href=\"#\" ></a></li>\");\n");
+      out.write("                            }\n");
+      out.write("                        },\n");
+      out.write("                        error: function () {\n");
+      out.write("                            alert('internal server error');\n");
+      out.write("                        },\n");
+      out.write("                    });\n");
+      out.write("                });\n");
+      out.write("            });\n");
+      out.write("    </script>\n");
       out.write("</html>");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){

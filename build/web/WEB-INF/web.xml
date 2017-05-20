@@ -17,6 +17,10 @@
         <servlet-name>logout</servlet-name>
         <servlet-class>Control.logout</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>search_for_course</servlet-name>
+        <servlet-class>Control.search_for_course</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>verify</servlet-name>
         <url-pattern>/verify</url-pattern>
@@ -28,6 +32,10 @@
     <servlet-mapping>
         <servlet-name>logout</servlet-name>
         <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>search_for_course</servlet-name>
+        <url-pattern>/search_for_course</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

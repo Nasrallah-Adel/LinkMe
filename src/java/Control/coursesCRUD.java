@@ -42,6 +42,20 @@ public class coursesCRUD {
 
     }
 
+    public static List<courses> searchcoursesData(String key) {
+        DB.s.beginTransaction();
+        Query q = DB.s.createQuery("SELECT name \n"
+                + "FROM course\n"
+                + "WHERE name LIKE '%" + key + "%';");
+        q.setFirstResult(0);
+
+        List<courses> per = q.list();
+        DB.s.getTransaction().commit();
+        DB.s.clear();
+        return per;
+
+    }
+
     public static List<courses> getOneCourseData(String username) {
         DB.s.beginTransaction();
 

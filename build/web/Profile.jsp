@@ -100,7 +100,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                     <li class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                             <span class="glyphicon glyphicon-user"></span>
-                                            <strong>Salman</strong>
+                                            <strong><% out.print(u.getUsername());  %></strong>
                                             <span class="glyphicon glyphicon-chevron-down"></span>
                                         </a>
                                         <ul class="dropdown-menu">
@@ -116,7 +116,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                                             <p class="text-left"><strong><% out.print(u.getUsername());  %></strong></p>
                                                             <p class="text-left small"><% out.print(u.getEmail());  %></p>
                                                             <p class="text-left">
-                                                                <a href="#" class="btn btn-primary btn-block btn-sm">Profile</a>
+
                                                             </p>
                                                         </div>
                                                     </div>
@@ -177,7 +177,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                                             <section class='wrap'>
                                                                 <div class='wrap_right'>
                                                                     <div class='bar_group'>
-                                                                        <div class='bar_group__bar thin' label="<% out.print(u.getCareer());%>" show_values='true' tooltip='true' value="<% out.print(Integer.valueOf(u.getLevel()) * 10);%>"><form action="Exam.jsp" method="get"><button class="takeexam" type="submit">Exam</button></form><br></div>
+                                                                        <div class='bar_group__bar thin' label="<% out.print(u.getCareer());%>" show_values='true' tooltip='true' value="<% out.print(Integer.valueOf(u.getLevel()) * 33);%>"><form action="Exam.jsp" method="get"><button class="takeexam" type="submit">Exam</button></form><br></div>
                                                                     </div>
 
                                                                     <div class='clear'></div>
