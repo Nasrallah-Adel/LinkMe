@@ -99,24 +99,24 @@
         </header>
         <!-- New section -->
         <section class="Event">
-            <h2 style="padding-left:500px" ><b>Level <% out.print(u.getLevel());%> Quiz</b>  </h2> <br>
+            <h2 style="padding-left:500px" ><b>Level <% out.print((Integer.valueOf(u.getLevel()) + 1));%> Quiz</b>  </h2> <br>
             <%
 
-                List<exam> co = examcrud.getexamData(u.getLevel(),u.getCareer());
+                List<exam> co = examcrud.getexamData(u.getLevel(), u.getCareer());
 
                 int i = 0;
-
+                int j = 0;
                 for (exam elem : co) {
 
 
             %>
-            <fieldset class="group">
-                <legend><% out.print((i++) + " - " + elem.getQuestion()); %></legend>
+            <fieldset class="group<% out.print((j)); %>">
+                <legend><% out.print((++i) + " - " + elem.getQuestion()); %></legend>
                 <ul class="checkbox">
-                    <li><input type="radio" id="cb1" value="a" /><label for="cb1"><% out.print(elem.getA()); %></label></li>
-                    <li><input type="radio" id="cb2" value="b" /><label for="cb2"><% out.print(elem.getB()); %></label></li>
-                    <li><input type="radio" id="cb3" value="c" /><label for="cb3"><% out.print(elem.getC()); %></label></li>
-                    <li><input type="radio" id="cb4" value="d" /><label for="cb4"><% out.print(elem.getD()); %></label></li>
+                    <li><input name = "group<% out.print((j)); %>"type="radio" id="cb1" value="a" /><label for="cb1"><% out.print(elem.getA()); %></label></li>
+                    <li><input name = "group<% out.print((j)); %>" type="radio" id="cb2" value="b" /><label for="cb2"><% out.print(elem.getB()); %></label></li>
+                    <li><input name = "group<% out.print((j)); %>" type="radio" id="cb3" value="c" /><label for="cb3"><% out.print(elem.getC()); %></label></li>
+                    <li><input name = "group<% out.print((j++)); %>" type="radio" id="cb4" value="d" /><label for="cb4"><% out.print(elem.getD()); %></label></li>
                 </ul>
             </fieldset>
             <%                }

@@ -19,7 +19,7 @@ public class examcrud {
 
     public static List<exam> getexamData(String v, String x) {
         DB.s.beginTransaction();
-        Query q = DB.s.createQuery("from exam where level = " + v + "and type = " + x);
+        Query q = DB.s.createQuery("from exam where level = '" + (Integer.valueOf(v) + 1) + "' and type = '" + x + "'");
         q.setFirstResult(0);
 
         List<exam> per = q.list();
